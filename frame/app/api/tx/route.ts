@@ -1,10 +1,9 @@
 import { FrameRequest, getFrameMessage } from '@coinbase/onchainkit/frame';
 import { NextRequest, NextResponse } from 'next/server';
 import { encodeFunctionData, parseEther } from 'viem';
-import { polygonMumbai } from 'viem/chains';
-import InvestmentPool from '../../_contracts/InvestmentPool';
-
-import { POOL_CONTRACT_ADDR } from '../../config';
+import { base } from 'viem/chains';
+import BuyMeACoffeeABI from '../../_contracts/BuyMeACoffeeABI';
+import { BUY_MY_COFFEE_CONTRACT_ADDR } from '../../config';
 import type { FrameTransactionResponse } from '@coinbase/onchainkit/frame';
 
 async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
@@ -16,19 +15,19 @@ async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
   }
 
   const data = encodeFunctionData({
-    abi: InvestmentPool,
-    functionName: 'invest',
-    args: [parseEther('1')],
+    abi: BuyMeACoffeeABI,
+    functionName: 'buyCoffee',
+    args: [parseEther('1'), 'Coffee all day!'],
   });
 
   const txData: FrameTransactionResponse = {
-    chainId: `eip155:${polygonMumbai.id}`, // Remember Base Sepolia might not work on Warpcast yet
+    chainId: `eip155:${base.id}`, // Remember Base Sepolia might not work on Warpcast yet
     method: 'eth_sendTransaction',
     params: {
       abi: [],
       data,
-      to: POOL_CONTRACT_ADDR,
-      value: parseEther('1').toString(), // 1 MATIC
+      to: BUY_MY_COFFEE_CONTRACT_ADDR,
+      value: parseEther('0.00004').toString(), // 0.00004 ETH
     },
   };
   return NextResponse.json(txData);
