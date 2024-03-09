@@ -3,7 +3,7 @@ export const runtime = "edge";
 export const dynamic = "force-dynamic";
 import { NextRequest } from "next/server";
 
-export async function GET(req: NextRequest) {
+export async function POST(req: NextRequest) {
     return new ImageResponse(
       (
         <div
