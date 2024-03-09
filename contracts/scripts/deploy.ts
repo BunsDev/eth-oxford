@@ -2,15 +2,15 @@ import { ethers } from "hardhat";
 
 async function main() {
   const investmentPool = await ethers.deployContract("InvestmentPool");
+  await investmentPool.waitForDeployment();
 
   const oneHour = 3600;
   const currentTime = Math.floor(Date.now() / 1000);
   const oneHourFromNow = currentTime + oneHour;
 
   const ntCollection = await ethers.deployContract("NFTCollection", 
-  ["AwsomeNFTCollection", "ANFTC", "https://ipfs.io/ipfs/", oneHourFromNow, investmentPool.address]);
+  ["AwsomeNFTCollection", "ANFTC", oneHourFromNow, investmentPool.target]);
 
-  await investmentPool.waitForDeployment();
   await ntCollection.waitForDeployment();
 
   console.log(`Investment pool deployed to ${investmentPool.target}`);
