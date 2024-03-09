@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.17;
+pragma solidity 0.8.20;
 
 import "./NFTCollection.sol";
 
@@ -20,7 +20,7 @@ contract InvestmentPool {
     function buyNFT(address _buyer) external {
         NFTOrder memory order = orders[_buyer];
         require(order.amount > 0, "Invalid amount");
-        NFTCollection nft = NFTCollection(_nftAddress);
+        NFTCollection nft = NFTCollection(order.collection);
         nft.safeMint(_buyer);
     }
 }

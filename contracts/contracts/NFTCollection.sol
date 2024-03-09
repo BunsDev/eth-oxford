@@ -1,10 +1,9 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.17;
+pragma solidity 0.8.20;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract NFTCollection is ERC721, Ownable {
+contract NFTCollection is ERC721 {
     uint256 private _nextTokenId;
     uint256 public _minTimestamp;
     address public _investContract;
@@ -18,13 +17,13 @@ contract NFTCollection is ERC721, Ownable {
     }
 
     constructor(
-        address initialOwner,
         string memory name,
         string memory symbol,
         uint256 minTimestamp,
         address investContract
-    ) ERC721(name, symbol) Ownable(initialOwner) {
+    ) ERC721(name, symbol) {
         _minTimestamp = minTimestamp;
+        _investContract = investContract;
     }
 
     function safeMint(address to) public onlyInvestContract {
