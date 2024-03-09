@@ -19,9 +19,8 @@ contract NFTCollection is ERC721, Ownable {
         string memory name,
         string memory symbol,
         uint256 price,
-        address investContract,
-    ) ERC721(name, symbol) {
-        _minTimestamp = minTimestamp;
+        address investContract
+    ) ERC721(name, symbol) Ownable(msg.sender){
         _investContract = investContract;
         _price = price;
         _investContract = investContract;
@@ -34,7 +33,7 @@ contract NFTCollection is ERC721, Ownable {
     }
 
     function setPrice(uint256 newPrice) public onlyOwner {
-        _minTimestamp = minTimestamp;
+        _price = newPrice;
     }
 
     function getPrice() public view returns (uint256) {

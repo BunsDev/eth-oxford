@@ -4,12 +4,10 @@ async function main() {
   const investmentPool = await ethers.deployContract("InvestmentPool");
   await investmentPool.waitForDeployment();
 
-  const oneHour = 3600;
-  const currentTime = Math.floor(Date.now() / 1000);
-  const oneHourFromNow = currentTime + oneHour;
+  const price = 100;
 
   const ntCollection = await ethers.deployContract("NFTCollection", 
-  ["AwsomeNFTCollection", "ANFTC", oneHourFromNow, investmentPool.target]);
+  ["AwsomeNFTCollection", "ANFTC", price, investmentPool.target]);
 
   await ntCollection.waitForDeployment();
 

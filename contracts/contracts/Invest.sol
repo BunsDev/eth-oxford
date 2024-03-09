@@ -14,12 +14,16 @@ contract InvestmentPool is AutomationCompatibleInterface {
     mapping(uint256 => address) public ordersOwners;
     uint256 public ordersCount;
 
+    event NFTOrderRegistered(address indexed nftAddress, uint256 price);
+
     function stake(uint256 _price, address _nftAddress) external payable {
-        require(msg.value == _amount, "Invalid amount");
+        require(msg.value == _price, "Invalid amount");
 
         orders[msg.sender] = NFTOrder(_nftAddress, _price);
         ordersOwners[ordersCount] = msg.sender;
         ordersCount++;
+
+        emit NFTOrderRegistered(_nftAddress, _price);
     }
 
     function buyNFT(address _buyer) public {
