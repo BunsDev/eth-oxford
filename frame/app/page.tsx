@@ -9,7 +9,7 @@ const frameMetadata = getFrameMetadata({
     },
     {
       action: 'tx',
-      label: 'Send Base Sepolia',
+      label: 'Invest',
       target: `${NEXT_PUBLIC_URL}/api/tx`,
       postUrl: `${NEXT_PUBLIC_URL}/api/tx-success`,
     },
@@ -18,17 +18,14 @@ const frameMetadata = getFrameMetadata({
     src: `${NEXT_PUBLIC_URL}/park-3.png`,
     aspectRatio: '1:1',
   },
-  input: {
-    text: 'Tell me a story',
-  },
   postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
 });
 
 export const metadata: Metadata = {
-  title: 'zizzamia.xyz',
+  title: 'Pool investment oportunity', 
   description: 'LFG',
   openGraph: {
-    title: 'zizzamia.xyz',
+    title: 'Pool investment oportunity',
     description: 'LFG',
     images: [`${NEXT_PUBLIC_URL}/park-1.png`],
   },
@@ -40,7 +37,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1>zizzamia.xyz</h1>
+      <h1>Pool investment oportunity</h1>
     </>
   );
 }
