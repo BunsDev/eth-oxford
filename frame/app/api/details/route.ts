@@ -8,7 +8,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
       buttons: [
         {
           action: 'tx',
-          label: 'Invest in this oportunity',
+          label: 'Send order purchase',
           target: `${NEXT_PUBLIC_URL}/api/tx`,
           postUrl: `${NEXT_PUBLIC_URL}/api/tx-success`,
         },

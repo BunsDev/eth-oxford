@@ -7,17 +7,17 @@ import {AutomationCompatibleInterface} from "@chainlink/contracts/src/v0.8/autom
 contract InvestmentPool is AutomationCompatibleInterface {
     struct NFTOrder {
         address collection;
-        uint256 amount;
+        uint256 price;
     }
 
     mapping(address => NFTOrder) public orders;
     mapping(uint256 => address) public ordersOwners;
     uint256 public ordersCount;
 
-    function invest(uint256 _amount, address _nftAddress) external payable {
+    function stake(uint256 _price, address _nftAddress) external payable {
         require(msg.value == _amount, "Invalid amount");
 
-        orders[msg.sender] = NFTOrder(_nftAddress, _amount);
+        orders[msg.sender] = NFTOrder(_nftAddress, _price);
         ordersOwners[ordersCount] = msg.sender;
         ordersCount++;
     }
@@ -25,9 +25,10 @@ contract InvestmentPool is AutomationCompatibleInterface {
     function buyNFT(address _buyer) public {
         NFTOrder memory order = orders[_buyer];
         NFTCollection nft = NFTCollection(order.collection);
-        if (nft.isMinTimestampReached()) {
-            require(order.amount > 0, "Invalid amount");
+        if (nft.getPrice() < order.price){
             nft.safeMint(_buyer);
+            delete orders[_buyer];
+            delete ordersOwners[ordersCount];
         }
     }
 
@@ -43,7 +44,7 @@ contract InvestmentPool is AutomationCompatibleInterface {
             address buyer = ordersOwners[i];
             NFTOrder memory order = orders[buyer];
             NFTCollection nft = NFTCollection(order.collection);
-            if (nft.isMinTimestampReached()) {
+            if (nft.getPrice() < order.price) {
                 return true;
                 break;
             }

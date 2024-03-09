@@ -2,8 +2,8 @@ import { FrameRequest, getFrameMessage } from '@coinbase/onchainkit/frame';
 import { NextRequest, NextResponse } from 'next/server';
 import { encodeFunctionData, parseEther } from 'viem';
 import { base } from 'viem/chains';
-import BuyMeACoffeeABI from '../../_contracts/BuyMeACoffeeABI';
-import { BUY_MY_COFFEE_CONTRACT_ADDR } from '../../config';
+import stakeABI from '../../_contracts/stake';
+import { STAKE_ADDRESS } from '../../config';
 import type { FrameTransactionResponse } from '@coinbase/onchainkit/frame';
 
 async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
@@ -15,9 +15,9 @@ async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
   }
 
   const data = encodeFunctionData({
-    abi: BuyMeACoffeeABI,
-    functionName: 'buyCoffee',
-    args: [parseEther('1'), 'Coffee all day!'],
+    abi: stakeABI,  
+    functionName: 'stake',
+    args: [parseEther('1'), ''],
   });
 
   const txData: FrameTransactionResponse = {
@@ -26,7 +26,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
     params: {
       abi: [],
       data,
-      to: BUY_MY_COFFEE_CONTRACT_ADDR,
+      to: STAKE_ADDRESS,
       value: parseEther('0.00004').toString(), // 0.00004 ETH
     },
   };

@@ -7,7 +7,7 @@ const abi = [
   { type: 'receive', stateMutability: 'payable' },
   {
     type: 'function',
-    name: 'buyCoffee',
+    name: 'stake',
     inputs: [
       { name: 'numCoffees', type: 'uint256', internalType: 'uint256' },
       { name: 'message', type: 'string', internalType: 'string' },
