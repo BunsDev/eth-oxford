@@ -5,10 +5,7 @@ import { NEXT_PUBLIC_URL } from './config';
 const frameMetadata = getFrameMetadata({
   buttons: [
     {
-      action: 'tx',
-      label: 'Invest in this oportunity',
-      target: `${NEXT_PUBLIC_URL}/api/tx`,
-      postUrl: `${NEXT_PUBLIC_URL}/api/tx-success`,
+      label: 'Add to wishlist',
     },
   ],
   image: {

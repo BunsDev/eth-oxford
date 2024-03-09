@@ -1,28 +1,31 @@
-import { headers } from "next/headers";
-import {NEXT_PUBLIC_URL} from "../../config"
+import { FrameRequest, getFrameMessage, getFrameHtmlResponse } from '@coinbase/onchainkit/frame';
+import { NextRequest, NextResponse } from 'next/server';
+import { NEXT_PUBLIC_URL } from '../../config';
 
-export const dynamic = "force-dynamic";
-
-export async function POST(req: Request) {
-  const imageURL = `${NEXT_PUBLIC_URL}/api/order`;
-  return new Response(
-    `
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>ETH Wrapped</title>
-            <meta property="og:title" content="ETH Wrapped">
-            <meta property="og:image" content="${imageURL}">
-            <meta name="fc:frame" content="vNext">
-            <meta name="fc:frame:image" content="${imageURL}">
-           
-        </head>
-        <body>
-        </body>
-        </html>`,
-    {
-      status: 200,
-      headers: { "Content-Type": "text/html" },
-    }
+async function getResponse(req: NextRequest): Promise<NextResponse> {
+  return new NextResponse(
+    getFrameHtmlResponse({
+      buttons: [
+        {
+          action: 'tx',
+          label: 'Invest in this oportunity',
+          target: `${NEXT_PUBLIC_URL}/api/tx`,
+          postUrl: `${NEXT_PUBLIC_URL}/api/tx-success`,
+        },
+      ],
+      image: {
+        src: `${NEXT_PUBLIC_URL}/park-1.png`,
+      },
+      input: {
+        text: 'Max price',
+      },
+      postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
+    }),
   );
 }
+
+export async function POST(req: NextRequest): Promise<Response> {
+  return getResponse(req);
+}
+
+export const dynamic = 'force-dynamic';
