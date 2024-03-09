@@ -45,6 +45,7 @@ contract InvestmentPool is AutomationCompatibleInterface {
             NFTCollection nft = NFTCollection(order.collection);
             if (nft.isMinTimestampReached()) {
                 return true;
+                break;
             }
         }
         return false;
