@@ -10,6 +10,8 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     return new NextResponse('Message not valid', { status: 500 });
   }
 
+  const image = `${NEXT_PUBLIC_URL}/api/images/test2`;
+
   const text = message.input || '';
   let state = {
     page: 0,
@@ -47,7 +49,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
         },
       ],
       image: {
-        src: `${NEXT_PUBLIC_URL}/park-1.png`,
+        src: image,
       },
       postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
       state: {
