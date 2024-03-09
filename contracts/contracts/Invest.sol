@@ -9,4 +9,11 @@ contract InvestmentPool {
 
         balances[msg.sender] += _amount;
     }
+
+    function withdraw(uint256 _amount) external {
+        require(balances[msg.sender] >= _amount, "Insufficient balance");
+
+        balances[msg.sender] -= _amount;
+        payable(msg.sender).transfer(_amount);
+    }
 }

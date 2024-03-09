@@ -17,7 +17,7 @@ const frameMetadata = getFrameMetadata({
     },
   ],
   image: {
-    src: `${NEXT_PUBLIC_URL}/park-3.png`,
+    src:"https://opengraph.b-cdn.net/production/documents/95546111-21b8-4ee5-a228-7093cec6e7b3.png?token=wi3Kf7Qfb__3otpmdX5gF1C5Z0FBpKPsOfA6-3Vbed4&height=487&width=1200&expires=33243713089",
     aspectRatio: '1:1',
   },
   input: {
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'zizzamia.xyz',
     description: 'Invest frame oportunity',
-    images: [imageURL],
+    images: ["https://opengraph.b-cdn.net/production/documents/95546111-21b8-4ee5-a228-7093cec6e7b3.png?token=wi3Kf7Qfb__3otpmdX5gF1C5Z0FBpKPsOfA6-3Vbed4&height=487&width=1200&expires=33243713089"],
   },
   other: {
     ...frameMetadata,

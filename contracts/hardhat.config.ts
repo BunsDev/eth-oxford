@@ -28,6 +28,11 @@ const config: HardhatUserConfig = {
       accounts:
         process.env.POLYGON_PRIVATE_KEY !== undefined ? [process.env.POLYGON_PRIVATE_KEY] : []
     },
+    base: {
+      url: process.env.BASE_URL || "",
+      accounts:
+        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : []
+    },
     hardhat: {
       forking: {
         enabled: process.env.FORKING === "true",
