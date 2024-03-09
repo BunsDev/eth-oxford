@@ -31,4 +31,8 @@ contract NFTCollection is ERC721 {
         uint256 tokenId = _nextTokenId++;
         _safeMint(to, tokenId);
     }
+
+    function isMinTimestampReached() public view returns (bool) {
+        return block.timestamp >= _minTimestamp;
+    }
 }
