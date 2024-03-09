@@ -30,6 +30,9 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     );
   }
 
+
+  const imageURL = `${process.env.NEXT_PUBLIC_URL}/api/traderDetail`;
+
   return new NextResponse(
     getFrameHtmlResponse({
       buttons: [
@@ -47,7 +50,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
         },
       ],
       image: {
-        src: `${NEXT_PUBLIC_URL}/park-1.png`,
+        src: imageURL,
       },
       postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
       state: {
