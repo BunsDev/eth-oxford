@@ -2,7 +2,8 @@ import { FrameRequest, getFrameMessage } from '@coinbase/onchainkit/frame';
 import { NextRequest, NextResponse } from 'next/server';
 import { encodeFunctionData, parseEther } from 'viem';
 import { polygonMumbai } from 'viem/chains';
-import BuyMeACoffeeABI from '../../_contracts/BuyMeACoffeeABI';
+import InvestmentPool from '../../_contracts/InvestmentPool';
+
 import { POOL_CONTRACT_ADDR } from '../../config';
 import type { FrameTransactionResponse } from '@coinbase/onchainkit/frame';
 
@@ -15,9 +16,9 @@ async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
   }
 
   const data = encodeFunctionData({
-    abi: BuyMeACoffeeABI,
-    functionName: 'buyCoffee',
-    args: [parseEther('1'), 'Coffee all day!'],
+    abi: InvestmentPool,
+    functionName: 'invest',
+    args: [parseEther('1')],
   });
 
   const txData: FrameTransactionResponse = {
