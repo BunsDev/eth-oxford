@@ -4,7 +4,7 @@ import {NEXT_PUBLIC_URL} from "../../config"
 export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
-  const imageURL = `${NEXT_PUBLIC_URL}/api/image`;
+  const imageURL = `${NEXT_PUBLIC_URL}/api/order`;
   return new Response(
     `
         <!DOCTYPE html>
