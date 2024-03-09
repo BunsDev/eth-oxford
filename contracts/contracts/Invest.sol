@@ -2,18 +2,24 @@
 pragma solidity 0.8.17;
 
 contract InvestmentPool {
-    mapping(address => uint256) public balances;
 
-    function invest(uint256 _amount) external payable {
+    struct NFTOrder {
+        address collection;
+        uint256 amount;
+    }
+
+    mapping(address => NFTOrder) public orders;
+
+    function invest(uint256 _amount, address _nftAddress) external payable {
         require(msg.value == _amount, "Invalid amount");
 
-        balances[msg.sender] += _amount;
+        orders[msg.sender] = NFTOrder(_nftAddress, _amount);
     }
 
-    function withdraw(uint256 _amount) external {
-        require(balances[msg.sender] >= _amount, "Insufficient balance");
-
-        balances[msg.sender] -= _amount;
-        payable(msg.sender).transfer(_amount);
+    function buyNFT(address _nftAddress) external {
+        NFTOrder memory order = orders[msg.sender];
+        require(order.collection == _nftAddress, "Invalid NFT address");
+        require(order.amount > 0, "Invalid amount");
     }
+
 }
