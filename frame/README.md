@@ -1,193 +1,34 @@
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/Zizzamia/a-frame-in-100-lines/blob/main/public/park-4.png">
-    <img alt="OnchainKit logo vibes" src="https://github.com/Zizzamia/a-frame-in-100-lines/blob/main/public/park-4.png" width="auto">
-  </picture>
-</p>
+<div align="center" style="font-family:'Montserrat', sans-serif;">
 
-# A Frame in 100 lines (or less)
+## <img src ="https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=029" width="10"> ETH Wrapped 
+<p>⏳ Get Your Ethereum Journey Wrapped  <p>
 
-Farcaster Frames in less than 100 lines, and ready to be deployed to Vercel.
+[![Link](https://img.shields.io/badge/Farcaster-Link-yellow)](https://warpcast.com/hashir/0x0fe090bd) <br/>
+</div>
 
-To test a **deployed** Frame, use: https://warpcast.com/~/developers/frames.
+## 📝 Project Description 
 
-To test a **localhost** Frame, use: [Framegear](https://onchainkit.xyz/frame/framegear).
-A simple tool that allows you to run and test your frames locally:
+This project is a **Spotify Wrapped** version your **Ethereum** journey. Input your **ENS** / **Lens handle** / **EVM Address** and wrap your version. ✨
 
-- without publishing
-- without casting
-- without spending warps
+Farcaster Post - [Link](https://warpcast.com/hashir/0x0fe090bd)
 
-And let us know what you build by either mentioning @zizzamia on [Warpcast](https://warpcast.com/zizzamia) or [X](https://twitter.com/Zizzamia).
+All query functions are defined in [`lib/subgraph-functions`](https://github.com/Shiyasmohd/ethwrapped-frames/tree/main/lib/subgraph-functions)
 
-<br />
 
-Have fun! ⛵️
+## 🛠️ Subgraphs Used
 
-<br />
+- POAP - [Link](https://thegraph.com/hosted-service/subgraph/poap-xyz/poap-xdai)
+- ENS - [Link](https://thegraph.com/hosted-service/subgraph/ensdomains/ens)
+- Uniswap V3 Ethereum - [Link](https://thegraph.com/explorer/subgraphs/4cKy6QQMc5tpfdx8yxfYeb9TLZmgLQe44ddW1G7NwkA6?view=Playground&chain=arbitrum-one)
+- ERC721 NFTs - [Link](https://thegraph.com/explorer/subgraphs/CBf1FtUKFnipwKVm36mHyeMtkuhjmh4KHzY3uWNNq5ow?view=Playground&chain=arbitrum-one)
+- Hey (formerly Lenster) Posts - [Link](https://api.thegraph.com/subgraphs/name/schmidsi/anudit-lens)
+- Lens - [Link](https://thegraph.com/hosted-service/subgraph/gundamdweeb/lens-protocol)
 
-## App Routing files
 
-- app/
-  - [config.ts](https://github.com/Zizzamia/a-frame-in-100-lines?tab=readme-ov-file#appconfigts)
-  - [layout.tsx](https://github.com/Zizzamia/a-frame-in-100-lines?tab=readme-ov-file#applayouttsx)
-  - [page.tsx](https://github.com/Zizzamia/a-frame-in-100-lines?tab=readme-ov-file#apppagetsx)
-- api/
-  - frame/
-    - [route.ts](https://github.com/Zizzamia/a-frame-in-100-lines?tab=readme-ov-file#appapiframeroutets)
 
-<br />
+## 📩 Contributors
 
-### `app/page.tsx`
-
-```tsx
-import { getFrameMetadata } from '@coinbase/onchainkit/frame';
-import type { Metadata } from 'next';
-import { NEXT_PUBLIC_URL } from './config';
-
-const frameMetadata = getFrameMetadata({
-  buttons: [
-    {
-      label: 'Story time!',
-    },
-    {
-      action: 'link',
-      label: 'Link to Google',
-      target: 'https://www.google.com',
-    },
-    {
-      label: 'Redirect to pictures',
-      action: 'post_redirect',
-    },
-  ],
-  image: {
-    src: `${NEXT_PUBLIC_URL}/park-3.png`,
-    aspectRatio: '1:1',
-  },
-  input: {
-    text: 'Tell me a boat story',
-  },
-  postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
-});
-
-export const metadata: Metadata = {
-  title: 'zizzamia.xyz',
-  description: 'LFG',
-  openGraph: {
-    title: 'zizzamia.xyz',
-    description: 'LFG',
-    images: [`${NEXT_PUBLIC_URL}/park-1.png`],
-  },
-  other: {
-    ...frameMetadata,
-  },
-};
-
-export default function Page() {
-  return (
-    <>
-      <h1>zizzamia.xyz</h1>
-    </>
-  );
-}
-```
-
-### `app/layout.tsx`
-
-```tsx
-export const viewport = {
-  width: 'device-width',
-  initialScale: 1.0,
-};
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  );
-}
-```
-
-### `app/config.ts`
-
-```ts
-export const NEXT_PUBLIC_URL = 'https://zizzamia.xyz';
-```
-
-### `app/api/frame/route.ts`
-
-```ts
-import { FrameRequest, getFrameMessage, getFrameHtmlResponse } from '@coinbase/onchainkit/frame';
-import { NextRequest, NextResponse } from 'next/server';
-import { NEXT_PUBLIC_URL } from '../../config';
-
-async function getResponse(req: NextRequest): Promise<NextResponse> {
-  let accountAddress: string | undefined = '';
-  let text: string | undefined = '';
-
-  const body: FrameRequest = await req.json();
-  const { isValid, message } = await getFrameMessage(body, { neynarApiKey: 'NEYNAR_ONCHAIN_KIT' });
-
-  if (isValid) {
-    accountAddress = message.interactor.verified_accounts[0];
-  }
-
-  if (message?.input) {
-    text = message.input;
-  }
-
-  if (message?.button === 3) {
-    return NextResponse.redirect(
-      'https://www.google.com/search?q=cute+dog+pictures&tbm=isch&source=lnms',
-      { status: 302 },
-    );
-  }
-
-  return new NextResponse(
-    getFrameHtmlResponse({
-      buttons: [
-        {
-          label: `🌲 ${text} 🌲`,
-        },
-      ],
-      image: {
-        src: `${NEXT_PUBLIC_URL}/park-1.png`,
-      },
-      postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
-    }),
-  );
-}
-
-export async function POST(req: NextRequest): Promise<Response> {
-  return getResponse(req);
-}
-
-export const dynamic = 'force-dynamic';
-```
-
-<br />
-
-## Resources
-
-- [Official Farcaster Frames documentation](https://docs.farcaster.xyz/learn/what-is-farcaster/frames)
-- [Official Farcaster Frame specification](https://docs.farcaster.xyz/reference/frames/spec)
-- [OnchainKit documentation](https://onchainkit.xyz)
-
-<br />
-
-## Community ☁️ 🌁 ☁️
-
-Check out the following places for more OnchainKit-related content:
-
-- Follow @zizzamia ([X](https://twitter.com/zizzamia), [Farcaster](https://warpcast.com/zizzamia)) for project updates
-- Join the discussions on our [OnchainKit warpcast channel](https://warpcast.com/~/channel/onchainkit)
-
-## Authors
-
-- [@zizzamia](https://github.com/zizzamia.png) ([X](https://twitter.com/Zizzamia))
-- [@cnasc](https://github.com/cnasc.png) ([warpcast](https://warpcast.com/cnasc))
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+| Name      | Twitter |
+| ----------- | ----------- |
+| Shiyas     |  [Link](https://x.com/0xshiyasmohd)      |
+| Hashir   | [Link](https://x.com/0xhashir) |   
