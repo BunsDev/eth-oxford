@@ -27,11 +27,11 @@ const frameMetadata = getFrameMetadata({
 });
 
 export const metadata: Metadata = {
-  title: 'zizzamia.xyz',
+  title: 'Invest frame oportunity',
   description: 'LFG',
   openGraph: {
     title: 'zizzamia.xyz',
-    description: 'LFG',
+    description: 'Invest frame oportunity',
     images: [imageURL],
   },
   other: {
