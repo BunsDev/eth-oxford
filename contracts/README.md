@@ -15,3 +15,8 @@ npx hardhat run scripts/deploy.ts
 
 Investment pool deployed to 0x7d7e4EdbC4F391Cfb1DEF64EEE348936A26dCE08
 NFT Collection deployed to 0xeace4472633D3Aa422Ba24b38fb0Ba439DF39E74
+AVAX TransferAndBuy 0xAE507bF7164326827513F1AA794fb777aA1A291E
+NFT Collection Mumbai deployed to 0x40B61DAbae7A7092Fe4CEbC99ff8d8080CecdC1f
+TransferAndBuy Mumbai deployed to 0xdC1D8ECB3636b98fc363ef1F19868c5cc784838A
+
+Cross chain transaction https://ccip.chain.link/msg/0x0f0a59f0bb37f148dcecc5724a63636b1b221ad88f3ae6a47511eae305b09f70

@@ -27,7 +27,6 @@ contract NFTCollection is ERC721, Ownable {
     }
 
     function safeMint(address to) public onlyInvestContract {
-        require(block.timestamp >= _minTimestamp, "Too early to mint");
         uint256 tokenId = _nextTokenId++;
         _safeMint(to, tokenId);
     }

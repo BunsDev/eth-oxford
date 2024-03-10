@@ -7,6 +7,16 @@
   resolved "https://registry.npmjs.org/@adraffy/ens-normalize/-/ens-normalize-1.10.1.tgz"
   integrity sha512-96Z2IP3mYmF1Xg2cDm8f1gWGf/HUVedQ3FMifV4kG/PQ4yEP51xDtRAEfhVNt5f/uzpNkZHwWQuUcu6D6K+Ekw==
 
+"@chainlink/contracts-ccip@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.npmjs.org/@chainlink/contracts-ccip/-/contracts-ccip-1.2.1.tgz"
+  integrity sha512-8lVod5Gclx25ZSLqX40zzhMwN7unnvj9AMKOE/LYIP5DjyiTDs/3BeXTw6GakeIkQF5v3FILnMIz8emF5FdSpQ==
+  dependencies:
+    "@eth-optimism/contracts" "^0.5.21"
+    "@openzeppelin/contracts" "~4.3.3"
+    "@openzeppelin/contracts-upgradeable-4.7.3" "npm:@openzeppelin/contracts-upgradeable@v4.7.3"
+    "@openzeppelin/contracts-v0.7" "npm:@openzeppelin/contracts@v3.4.2"
+
 "@chainlink/contracts@^0.8.0":
   version "0.8.0"
   resolved "https://registry.npmjs.org/@chainlink/contracts/-/contracts-0.8.0.tgz"

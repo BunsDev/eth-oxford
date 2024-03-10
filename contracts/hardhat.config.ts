@@ -33,6 +33,11 @@ const config: HardhatUserConfig = {
       accounts:
         process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : []
     },
+    fuji: {
+      url: process.env.FUJI_URL || "",
+      accounts:
+        process.env.FUJI_KEY !== undefined ? [process.env.FUJI_KEY] : []
+    },
     hardhat: {
       forking: {
         enabled: process.env.FORKING === "true",
