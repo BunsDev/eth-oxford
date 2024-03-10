@@ -14,7 +14,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
         },
       ],
       image: {
-        src: `https://bafkreibgyyheobf3lzy4uovtp5zabvh3daszliz5xcjhk3pmw4qt4myfui.ipfs.nftstorage.link/`,
+        src: `https://bafkreied55f7skfo65d4yxg6ec5w2x7556mp4sifgdap7wlnunbjzf2zsa.ipfs.nftstorage.link/`,
       },
       input: {
         text: 'Max price',
