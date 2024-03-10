@@ -5,7 +5,7 @@ import { NEXT_PUBLIC_URL } from './config';
 const frameMetadata = getFrameMetadata({
   buttons: [
     {
-      label: 'Add to wishlist',
+      label: 'Add to basket',
     },
   ],
   image: {
