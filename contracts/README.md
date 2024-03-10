@@ -20,3 +20,4 @@ NFT Collection Mumbai deployed to 0x40B61DAbae7A7092Fe4CEbC99ff8d8080CecdC1f
 TransferAndBuy Mumbai deployed to 0xdC1D8ECB3636b98fc363ef1F19868c5cc784838A
 
 Cross chain transaction https://ccip.chain.link/msg/0x0f0a59f0bb37f148dcecc5724a63636b1b221ad88f3ae6a47511eae305b09f70
+Automation transaction https://mumbai.polygonscan.com/tx/0xf037f3a414c9cf74bb7474a20e63e5d2aac01147cec0abe6ccf4789cd29863ac
