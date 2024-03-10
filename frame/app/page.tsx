@@ -9,7 +9,7 @@ const frameMetadata = getFrameMetadata({
     },
   ],
   image: {
-    src:"https://bafkreigvc7m4h756xbdn2gnkuphke2ma2u5ti63ruyyc33y2r3i67lpyhy.ipfs.nftstorage.link/",
+    src:"https://bafkreickktxvbpmemnnxtcuaro3vywl5qplltqibkmycxwwfwor6qk37ti.ipfs.nftstorage.link/",
     aspectRatio: '1:1',
   },
   postUrl: `${NEXT_PUBLIC_URL}/api/details`,
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Invest frame oportunity',
     description: 'Invest frame oportunity',
-    images: ["https://bafkreigvc7m4h756xbdn2gnkuphke2ma2u5ti63ruyyc33y2r3i67lpyhy.ipfs.nftstorage.link/"],
+    images: ["https://bafkreickktxvbpmemnnxtcuaro3vywl5qplltqibkmycxwwfwor6qk37ti.ipfs.nftstorage.link/"],
   },
   other: {
     ...frameMetadata,
